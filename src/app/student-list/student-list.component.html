@@ -1,0 +1,15 @@
+<div class="container mt-4 text-center">
+    <p class="h3">Student List</p>
+    <div *ngFor="let student of studentData" class="card mx-auto mb-4" style="width: 18rem;">
+        <div class="card-body">
+            <p class="card-title h4">Name: {{ student.name }}</p>
+            <p class="card-text">Gender: {{ student.gender }}</p>
+            <p class="card-text">DOB: {{ student.dob }}</p>
+            <p class="card-text">Email: {{ student.email }}</p>
+            <p class="card-text">Contact: {{ student.mobile }}</p>
+            <p class="card-text">Address: {{ student.address }}</p>
+            <p class="card-text">Reg. Fee: {{ student.regfee }}</p>
+            <button class="btn btn-primary" (click)="updateStudent(studentData)">Update</button>
+        </div>
+    </div>
+</div>

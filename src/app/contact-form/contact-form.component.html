@@ -1,0 +1,397 @@
+
+<section class="h-70 gradient-form" style="background-color: #eee">
+    <div class="container p-2">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-8">
+          <div class="card rounded-3 text-black">
+            <div class="card-body p-md-2 mx-md-5">
+              <div class="text-center">
+                <h4 class="mt-1 mb-3 pb-1">Contact Form</h4>
+              </div>
+  
+              <form [formGroup]="studentInfo" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <!-- Name Input -->
+                      <label class="form-label" for="form2Example11"
+                        >Name</label
+                      >
+                      <input
+                        type="text"
+                        id="form2Example11"
+                        class="form-control"
+                        name="firstname"
+                        placeholder="Enter Full Name"
+                        formControlName="name"
+                        required
+                      />
+                      <div
+                        *ngIf="
+                          studentInfo.get('name')?.hasError('required') &&
+                          studentInfo.get('name')?.touched
+                        "
+                        class="text-danger text-sm"
+                      >
+                        <small> Name required</small>
+                      </div>
+                      <div
+                        *ngIf="
+                          studentInfo.get('name')?.hasError('pattern') &&
+                          studentInfo.get('name')?.touched
+                        "
+                        class="text-danger text-sm"
+                      >
+                        <small>Must Be Char</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <div class="form-outline ">
+                      <!-- Gender Inputs -->
+                      <label class="form-label p-2 " for="form2Example11" name="gender"
+                      formControlName="gender">Gender </label>
+                      <input
+                        type="radio"
+                        class="custom-control-input"
+                        id="defaultInline1"
+                        name="gender"
+                        value="Male"
+                        formControlName="gender"
+                      />
+                      <label
+                        class="custom-control-label p-2 text-dark"
+                        for="defaultInline1"
+                        >Male</label
+                      >
+
+                      <input
+                        type="radio"
+                        class="custom-control-input"
+                        id="defaultInline2"
+                        name="gender"
+                        value="Female"
+                        formControlName="gender"
+                      />
+                      <label
+                        class="custom-control-label p-2 text-dark"
+                        for="defaultInline2"
+                        >Female</label
+                      >
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <!-- DOB Input -->
+                      <label class="form-label" for="form2Example11">DOB</label>
+                      <input
+                        type="date"
+                        id="form2Example11"
+                        class="form-control"
+                        name="dob"
+                        formControlName="dob"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <!-- Email Input -->
+                      <label class="form-label" for="form2Example11"
+                      >Email</label
+                    >
+                    <input
+                      type="email"
+                      id="form2Example11"
+                      class="form-control"
+                      name="email"
+                      placeholder="Enter Email Address"
+                      formControlName="email"
+                    />
+                    <div
+                      *ngIf="
+                        studentInfo.get('email')?.hasError('required') &&
+                        studentInfo.get('email')?.touched
+                      "
+                      class="text-danger text-sm"
+                    >
+                      <small> Email is required.</small>
+                    </div>
+                    <div
+                      *ngIf="
+                        studentInfo.get('email')?.hasError('email') &&
+                        studentInfo.get('email')?.touched
+                      "
+                      class="text-danger text-sm"
+                    >
+                      <small> Please enter a valid email address.</small>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <!-- Registration Fee Input -->
+                      <label class="form-label" for="form2Example11"
+                        >Registration Fee</label
+                      >
+                      <input
+                        type="text"
+                        id="form2Example11"
+                        class="form-control"
+                        name="regfee"
+                        placeholder="Enter Registration fee"
+                        formControlName="regfee"
+                        (input)="calculateTotalFee()"
+                      />
+                      <div
+                        *ngIf="
+                          studentInfo.get('regfee')?.hasError('required') &&
+                          studentInfo.get('regfee')?.touched
+                        "
+                        class="text-danger"
+                      >
+                        <small> Field is required.</small>
+                      </div>
+                      <div
+                        *ngIf="
+                          studentInfo.get('regfee')?.hasError('pattern') &&
+                          studentInfo.get('regfee')?.touched
+                        "
+                        class="text-danger"
+                      >
+                        <small> Must be digit.</small>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <!-- College Fee Input -->
+                      <label class="form-label" for="form2Example11"
+                        >College Fee</label
+                      >
+                      <input
+                        type="text"
+                        id="form2Example11"
+                        class="form-control"
+                        name="clgfee"
+                        placeholder="Enter College fee"
+                        formControlName="clgfee"
+                        (input)="calculateTotalFee()"
+                      />
+                      <div
+                        *ngIf="
+                          studentInfo.get('clgfee')?.hasError('required') &&
+                          studentInfo.get('clgfee')?.touched
+                        "
+                        class="text-danger"
+                      >
+                        <small> Field is required.</small>
+                      </div>
+                      <div
+                        *ngIf="
+                          studentInfo.get('clgfee')?.hasError('pattern') &&
+                          studentInfo.get('clgfee')?.touched
+                        "
+                        class="text-danger"
+                      >
+                        <small> Must be digit.</small>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <!-- Exam Fee Input -->
+                      <label class="form-label" for="form2Example11"
+                        >Exam Fee</label
+                      >
+                      <input
+                        type="text"
+                        id="form2Example11"
+                        class="form-control"
+                        name="examfee"
+                        placeholder="Enter Exam Fee"
+                        formControlName="examfee"
+                        (input)="calculateTotalFee()"
+                      />
+                      <div
+                        *ngIf="
+                          studentInfo.get('examfee')?.hasError('required') &&
+                          studentInfo.get('examfee')?.touched
+                        "
+                        class="text-danger"
+                      >
+                        <small> Field is required.</small>
+                      </div>
+                      <div
+                        *ngIf="
+                          studentInfo.get('examfee')?.hasError('pattern') &&
+                          studentInfo.get('examfee')?.touched
+                        "
+                        class="text-danger"
+                      >
+                        <small> Must be digit.</small>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <!-- Total Fee Input -->
+                      <label class="form-label" for="form2Example11"
+                      >Total Fee</label
+                    >
+                    <input
+                      type="text"
+                      id="form2Example11"
+                      class="form-control"
+                      name="totalfee"
+                      placeholder="Enter Total fee"
+                      formControlName="totalfee"
+                      [value]="studentInfo.get('totalfee')?.value"
+                      disable
+                    />
+                    </div>
+                  </div> 
+                  </div>
+               
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <!-- Address Input -->
+                      <label class="form-label" for="form2Example11"
+                      >Address</label
+                    >
+                    <input
+                      type="text"
+                      id="form2Example11"
+                      class="form-control"
+                      name="address"
+                      placeholder="Enter Address"
+                      formControlName="address"
+                    />
+                    <div
+                      *ngIf="
+                        studentInfo.get('address')?.hasError('required') &&
+                        studentInfo.get('address')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      <small> Field is required.</small>
+                    </div>
+                    <div
+                      *ngIf="
+                        studentInfo.get('address')?.hasError('minlength') &&
+                        studentInfo.get('address')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      <small> At least 4 Char required</small>
+                  </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <!-- Passing Year Select -->
+                      <label class="form-label" for="form2Example11"
+                        >Passing Year</label
+                      >
+
+                      <select
+                        class="browser-default custom-select form-control border-link"
+                        name="passyear"
+                        formControlName="passyear"
+                      >
+                        <option value="" disabled>Choose Yaer</option>
+                        <option name="passyear" value="2023" selected>
+                          2023
+                        </option>
+                        <option name="passyear" value="2022">2022</option>
+                        <option name="passyear" value="2021">2021</option>
+                        <option name="passyear" value="2020">2020</option>
+                        <option name="passyear" value="2019">2019</option>
+                      </select>
+
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <!-- Mobile Number Input -->
+                      <label class="form-label" for="form2Example11"
+                      >Mobile Number</label
+                    >
+                    <input
+                      type="text"
+                      id="form2Example11"
+                      class="form-control"
+                      name="mobile"
+                      placeholder="Enter Mobile Number"
+                      formControlName="mobile"
+                    />
+                    <div
+                      *ngIf="
+                        studentInfo.get('mobile')?.hasError('required') &&
+                        studentInfo.get('mobile')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      <small> Mobile is required.</small>
+                    </div>
+                    <div
+                      *ngIf="
+                        studentInfo.get('mobile')?.hasError('pattern') &&
+                        studentInfo.get('mobile')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      <small> Mobile number must be 10 digit.</small>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-6">
+                    <div class="text-center p-3 pb-1">
+                      <!-- Save Button -->
+                      <button
+                        class="btn btn-primary btn-block fa-lg gradient-custom-2"
+                        type="submit"
+                      >
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="text-center p-3 pb-1">
+                      <!-- Delete Button -->
+                      <button
+                        class="btn btn-danger btn-block fa-lg gradient-custom-2"
+                        type="button"
+                        (click)="deleteForm()"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+  
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <app-student-list></app-student-list>
