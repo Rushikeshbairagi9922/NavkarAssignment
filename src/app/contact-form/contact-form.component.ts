@@ -12,48 +12,41 @@ import { DataService } from '../data.service';
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
-  styleUrls: ['./contact-form.component.css']
+  styleUrls: ['./contact-form.component.css'],
 })
 export class ContactFormComponent {
-
   studentInfo!: FormGroup;
   firstname: any;
 
-  
+  isOnline: boolean = true;
 
-  isOnline : boolean= true;
-    
-  constructor(private rout: Router ,private dataService: DataService ) { }
-  
-  
- 
+  constructor(private rout: Router, private dataService: DataService) {}
+
   ngOnInit(): void {
     this.initForm();
-    
   }
 
   initForm(): void {
-
     this.studentInfo = new FormGroup({
       name: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
-        Validators.pattern("[a-zA-Z].*")
+        Validators.pattern('[a-zA-Z].*'),
       ]),
       gender: new FormControl(''),
       dob: new FormControl(''),
       email: new FormControl('', [Validators.required, Validators.email]),
       regfee: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^[0-9]+$/)
+        Validators.pattern(/^[0-9]+$/),
       ]),
       clgfee: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^[0-9]+$/)
+        Validators.pattern(/^[0-9]+$/),
       ]),
       examfee: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^[0-9]+$/)
+        Validators.pattern(/^[0-9]+$/),
       ]),
       totalfee: new FormControl(),
       address: new FormControl('', [
@@ -64,7 +57,7 @@ export class ContactFormComponent {
       mobile: new FormControl('', [
         Validators.required,
         Validators.minLength(10),
-        Validators.pattern(/^[0-9]{10}$/)
+        Validators.pattern(/^[0-9]{10}$/),
       ]),
     });
   }
@@ -78,20 +71,8 @@ export class ContactFormComponent {
     const totalFee = regFee + clgFee + examFee;
     this.studentInfo.patchValue({ totalfee: totalFee.toFixed(2) });
   }
-  
 
-  // onSubmit() {
-  //   if (this.studentInfo.valid) {
-      
-  //     console.log('Saved:', this.studentInfo.value);
-  //     alert('Student data saved successfully');
-  //   } else {
-     
-  //   }
-  // }
-
-
-  onSubmit(){
+  onSubmit() {
     if (this.studentInfo.valid) {
       const formData = this.studentInfo.value;
       // console.log(formData);
@@ -101,20 +82,17 @@ export class ContactFormComponent {
       });
     } else {
       // Handle form validation errors
-      alert('Student data saved faild')
+      alert('Student data saved faild');
     }
   }
 
   deleteForm() {
-    
     this.resetForm();
     console.log('Form deleted');
   }
 
   resetForm() {
-    
     this.initForm();
-    
     this.studentInfo.reset();
   }
 }

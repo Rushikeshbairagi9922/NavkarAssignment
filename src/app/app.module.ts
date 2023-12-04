@@ -26,9 +26,6 @@ import { StudentListComponent } from './student-list/student-list.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    // AngularFireModule.initializeApp(environment.firebase),
-    // AngularFireModule.initializeApp(environment.firebase),
-    // FirestoreModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     

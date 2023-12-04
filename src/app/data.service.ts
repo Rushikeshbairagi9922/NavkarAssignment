@@ -2,14 +2,10 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class DataService {
- 
-
   constructor(private firestore: AngularFirestore) {}
 
   addStudent(studentData: any) {
@@ -23,7 +19,9 @@ export class DataService {
   updateStudent(student: any) {
     const studentId = student.id; // Assuming you have an 'id' property in your student data
     delete student.id; // Remove the 'id' property before updating
-    return this.firestore.collection('StudentData').doc(studentId).update(student);
+    return this.firestore
+      .collection('StudentData')
+      .doc(studentId)
+      .update(student);
   }
-
 }
